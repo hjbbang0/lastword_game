@@ -6,7 +6,7 @@ AI 심판과 겨루는 끝말잇기 게임. AI 1:1 대결 + 친구와 실시간 
 ```
 index.html      게임 화면 (단일 파일)
 platform.js     AI 호출(/api/judge) + Supabase 실시간 방 어댑터
-api/judge.js    Vercel 서버리스 함수 — Anthropic API로 단어 판정 (API 키는 서버에만)
+api/judge.js    Vercel 서버리스 함수 — Upstage Solar(또는 Claude)로 단어 판정 (API 키는 서버에만)
 api/config.js   브라우저에 공개 가능한 설정 전달
 ```
 
@@ -14,7 +14,9 @@ api/config.js   브라우저에 공개 가능한 설정 전달
 1. 이 폴더를 GitHub 저장소에 올립니다.
 2. vercel.com → Add New → Project → 저장소 Import (Framework Preset: Other, 빌드 설정 비워 둠)
 3. Environment Variables 추가
-   - `ANTHROPIC_API_KEY` (필수) — console.anthropic.com 에서 발급
+   - `UPSTAGE_API_KEY` (필수) — console.upstage.ai 에서 발급
+   - `UPSTAGE_MODEL` (선택) — 기본 `solar-pro4` (AI Initiative 무료 모델, 다른 모델은 과금 방지를 위해 잠김)
+   - (대신 `ANTHROPIC_API_KEY`를 넣으면 Claude로 동작)
    - `SUPABASE_URL`, `SUPABASE_ANON_KEY` (온라인 대결용, 선택)
 4. Deploy. 이후 GitHub에 push할 때마다 자동 재배포됩니다.
 
@@ -25,3 +27,9 @@ supabase.com에서 무료 프로젝트 생성 → Project Settings → API 에�
 ## 참고
 - 환경변수가 없으면 AI 심판 없이 연습 모드(내장 단어장)로 동작합니다.
 - `api/judge.js`에 IP당 분당 호출 제한이 있습니다 (`RATE_LIMIT_PER_MIN`, 기본 40).
+
+## v3 업데이트 (학생용 재미 점검)
+- 첫 방문 튜토리얼 4장, 🎯 오늘의 미션(매일 3개, 완료 시 XP), 📚 단어 도감(희귀어·최신어 모음)
+- 🔥 5콤보 FEVER(점수 x1.5), ⏭️ 패스, 난이도별 목숨·힌트(쉬움 ❤️5·💡3, 틀려도 목숨 유지)
+- 결과 화면에 '이번 판에 만난 단어', 온라인 대결 응원 이모지, 닉네임 고운말 필터
+- 서버: 같은 단어 판정 캐시(API 한도 절약), 429/5xx 1회 재시도, 12초 타임아웃

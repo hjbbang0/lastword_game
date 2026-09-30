@@ -15,6 +15,7 @@ async function askAI(kind, data) {
     throw { code: "upstream_error", message: "network" };
   }
   if (r.status === 429) throw { code: "rate_limited", message: "too many requests" };
+  if (r.status === 503) throw { code: "not_granted", message: "ai unavailable" }; // 키 만료·크레딧 소진 → 연습 모드로 전환
   if (!r.ok) throw { code: "upstream_error", message: "status " + r.status };
   return r.json();
 }

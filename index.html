@@ -219,6 +219,43 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
 @keyframes fadeout{to{opacity:0;transform:rotate(-12deg) scale(.9)}}
 .jolt{animation:jolt .3s .3s}
 @keyframes jolt{25%{transform:translate(6px,-4px)}50%{transform:translate(-6px,4px)}75%{transform:translate(3px,2px)}}
+/* v3: missions, dex, fever, reactions, tutorial */
+.missions{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:18px}
+.missions h4{margin:0 0 8px;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+.missions h4 small{color:var(--muted);font-weight:600;font-size:12px}
+.ms{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:14px}
+.ms .pbar{flex:1;height:6px;border-radius:99px;background:#0006;overflow:hidden;max-width:110px;margin-left:auto}
+.ms .pbar i{display:block;height:100%;background:var(--cyan)}
+.ms.done{color:var(--lime)}.ms.done .pbar i{background:var(--lime)}
+.ms .cnt{font-size:12px;color:var(--muted);min-width:40px;text-align:right}
+.linkbtn{width:100%;margin-top:10px;background:transparent;border:2px solid var(--line);border-radius:12px;padding:12px;font-weight:800;font-size:15px}
+.dexlist{display:grid;gap:8px;margin-top:12px}
+.dx{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.dx b{font-family:var(--display);font-weight:400;font-size:22px;margin-right:6px}
+.dx p{margin:6px 0 0;font-size:14px;line-height:1.55;color:var(--text)}
+.dexfilter{display:flex;gap:6px;margin-top:12px}
+.dexfilter button{flex:1;border:2px solid var(--line);background:transparent;border-radius:10px;padding:8px;font-weight:800;font-size:13px}
+.dexfilter button[aria-pressed="true"]{border-color:var(--yellow);background:#fff2000f}
+.learned{text-align:left;background:#0005;border-radius:12px;padding:10px 12px;margin-bottom:14px;font-size:13px;line-height:1.6;max-height:160px;overflow:auto}
+.learned b{color:var(--yellow)}
+.think{display:inline-block;animation:think .6s ease-in-out infinite alternate}
+@keyframes think{from{transform:translateY(0) rotate(-8deg)}to{transform:translateY(-6px) rotate(8deg)}}
+body.fever{background-image:radial-gradient(ellipse 90% 60% at 50% -10%, #8a0f5e 0%, transparent 70%),repeating-linear-gradient(0deg, transparent 0 38px, rgba(255,46,151,.06) 38px 39px);animation:feverbg 1s ease-in-out infinite alternate}
+@keyframes feverbg{to{background-color:#1a0520}}
+body.fever .ring .prog{stroke:var(--yellow);filter:drop-shadow(0 0 10px var(--yellow))}
+.feverTag{display:none;font-family:var(--display);font-size:15px;color:var(--yellow);text-align:center;letter-spacing:.1em;text-shadow:0 0 12px var(--pink);margin-top:4px}
+body.fever .feverTag{display:block;animation:beat .5s infinite}
+.rxbar{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.rxbar button{width:44px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--bg2);font-size:20px;padding:0}
+.rxbar button:active{transform:scale(.9)}
+.rxfly{position:fixed;bottom:120px;font-size:34px;pointer-events:none;z-index:55;animation:rxup 1.8s ease-out forwards;text-align:center}
+.rxfly small{display:block;font-size:11px;font-weight:800;color:var(--text);background:#0008;border-radius:6px;padding:1px 5px}
+@keyframes rxup{from{opacity:1;transform:translateY(0) scale(.6)}15%{transform:translateY(-20px) scale(1.2)}to{opacity:0;transform:translateY(-260px) scale(1)}}
+.tut{text-align:left}
+.tut .stepn{color:var(--muted);font-size:12px;font-weight:700;text-align:center}
+.tut .big-e{font-size:64px;text-align:center;margin:8px 0}
+.tut h2{text-align:center;font-size:34px}
+.tut p{font-size:15px;line-height:1.7;margin:10px 0 18px}
 .sndbar{position:fixed;right:max(12px,calc(50% - 280px + 12px));bottom:calc(env(safe-area-inset-bottom,0px) + 14px);display:flex;gap:8px;z-index:30}
 .snd{width:46px;height:46px;border-radius:50%;border:2px solid var(--line);background:#1b0c40e6;font-size:20px;display:grid;place-items:center;padding:0;box-shadow:0 4px 18px #0008}
 .snd[aria-pressed="true"]{border-color:var(--cyan);box-shadow:0 0 16px #19f0ff66}
@@ -252,9 +289,9 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
 
   <div class="pane active" id="paneAI" role="tabpanel">
     <div class="modes" role="group" aria-label="난이도">
-      <button class="mode" data-mode="easy" aria-pressed="false"><strong>🐥 쉬움</strong><small>30초 · 흔한 단어</small></button>
-      <button class="mode" data-mode="normal" aria-pressed="true"><strong>⚔️ 보통</strong><small>20초 · 최신어 섞임</small></button>
-      <button class="mode hell" data-mode="hell" aria-pressed="false"><strong>👹 지옥</strong><small>15초 · 한방단어 공격</small></button>
+      <button class="mode" data-mode="easy" aria-pressed="false"><strong>🐥 쉬움</strong><small>30초 · ❤️5 · 틀려도 OK</small></button>
+      <button class="mode" data-mode="normal" aria-pressed="true"><strong>⚔️ 보통</strong><small>20초 · ❤️3 · 최신어</small></button>
+      <button class="mode hell" data-mode="hell" aria-pressed="false"><strong>👹 지옥</strong><small>15초 · ❤️3 · 한방단어</small></button>
     </div>
     <button class="go" id="btnStart">🎮 AI와 대결 시작</button>
   </div>
@@ -272,6 +309,10 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
     <div class="note hide" id="onNote"></div>
   </div>
 
+  <div class="missions" id="missions"></div>
+  <button class="linkbtn" id="btnDex">📚 내 단어 도감 <span id="dexN">0</span>개</button>
+  <button class="linkbtn" id="btnTut">❓ 게임 방법 다시 보기</button>
+
   <h3>🏅 배지</h3>
   <div class="badges" id="badgeGrid"></div>
 
@@ -279,7 +320,9 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
   <ul class="rules">
     <li>🔗 앞 단어의 끝 글자로 시작하는 명사를 입력해요.</li>
     <li>🔄 두음법칙 인정: ㄹ→ㄴ/ㅇ, ㄴ→ㅇ (력→역, 녀→여)</li>
-    <li>💔 사전에 없는 단어나 ⏱️ 시간 초과는 목숨 하나를 잃어요.</li>
+    <li>💔 사전에 없는 단어나 ⏱️ 시간 초과는 목숨 하나를 잃어요. (🐥 쉬움은 틀려도 목숨이 줄지 않아요)</li>
+    <li>🔥 5연속이면 FEVER! 점수가 1.5배로 뻥튀기돼요.</li>
+    <li>⏭️ 너무 어려우면 패스! 대신 목숨 하나를 내요.</li>
     <li>🔥 연속으로 맞히면 콤보 배수, 💎 희귀어·📡 최신어는 보너스!</li>
     <li>🏳️ AI가 단어를 못 찾으면 항복 보너스 +300</li>
     <li>👥 온라인 대결은 목숨이 다 떨어지면 탈락, 마지막까지 살아남으면 우승 👑</li>
@@ -299,6 +342,7 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
     <div class="tile"><div><div class="ch" id="ch">?</div><div class="alt" id="alt"></div></div></div>
     <div class="secs" id="secs">15</div>
   </div>
+  <div class="feverTag">🔥 FEVER TIME · 점수 x1.5 🔥</div>
   <div class="status" id="status" aria-live="polite"></div>
   <div class="entry" id="entry">
     <input id="word" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="14" placeholder="단어 입력" aria-label="단어 입력">
@@ -306,7 +350,8 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
   </div>
   <div class="tools">
     <button class="tool" id="btnHint">💡 힌트 <b id="hintN">1</b></button>
-    <button class="tool" id="btnQuit">🏳️ 그만하기</button>
+    <button class="tool" id="btnPass">⏭️ 패스</button>
+    <button class="tool" id="btnQuit">🚪 그만하기</button>
   </div>
   <div class="offline" id="offline">🔌 AI 심판이 연결되지 않아 연습 모드로 진행 중이에요. 단어가 사전에 있는지는 검사하지 않고, 상대는 내장 단어장으로 대답해요.</div>
   <div class="card" id="card" aria-live="polite">
@@ -353,13 +398,26 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
     <input id="mword" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="14" placeholder="내 차례를 기다리는 중" aria-label="단어 입력" disabled>
     <button class="fire" id="mFire" disabled>⚔️ 공격</button>
   </div>
+  <div class="rxbar" id="rxbar" aria-label="응원 이모지 보내기"><button data-e="👏">👏</button><button data-e="😂">😂</button><button data-e="😱">😱</button><button data-e="🔥">🔥</button><button data-e="👍">👍</button><button data-e="🤯">🤯</button></div>
   <div class="card" id="mcard" aria-live="polite">
     <div class="lbl"><span>📖 단어 카드</span><span>🤖 AI 심판</span></div>
     <div id="mcardBody"><p class="empty">어렵거나 새로 생긴 단어가 나오면 여기에 뜻이 떠요 ✨</p></div>
   </div>
 </section>
 
+<!-- ================= DEX ================= -->
+<section id="dexScreen" class="screen">
+  <div class="hud"><button class="back" id="btnDexBack">← 돌아가기</button><span class="best" id="dexCount"></span></div>
+  <h2 style="font-family:var(--display);font-weight:400;font-size:40px;margin:14px 0 0">📚 단어 도감</h2>
+  <p class="tag" style="margin:6px 0 0">게임에서 만난 어려운 단어와 최신어를 모아 두었어요. 뜻을 읽고 다음 판에 써먹어 보세요!</p>
+  <div class="dexfilter" id="dexFilter"><button data-f="all" aria-pressed="true">전체</button><button data-f="r" aria-pressed="false">💎 희귀어</button><button data-f="t" aria-pressed="false">📡 최신어</button></div>
+  <div class="dexlist" id="dexList"></div>
+</section>
+
 <!-- ================= OVERLAYS ================= -->
+<div class="overlay" id="tut" role="dialog" aria-modal="true" aria-labelledby="tutTitle">
+  <div class="panel tut" id="tutBody"></div>
+</div>
 <div class="overlay" id="over" role="dialog" aria-modal="true" aria-labelledby="overTitle">
   <div class="panel">
     <h2 id="overTitle">💥 게임 오버</h2>
@@ -371,6 +429,7 @@ h3{font-size:15px;margin:28px 0 10px;color:var(--muted);font-weight:600}
       <div><b id="oWins">0</b>🏳️ AI 항복</div>
     </div>
     <div class="earned" id="oEarned"></div>
+    <div class="learned" id="oLearned" hidden></div>
     <div class="row2">
       <button class="ghost" id="btnHome">🏠 처음으로</button>
       <button class="go" id="btnAgain" style="flex:2">🔁 다시 하기</button>
@@ -418,13 +477,13 @@ const BADGES = [
   {id:"lv5",    ic:"🧙", name:"레벨 5",     desc:"레벨 5 달성"},
   {id:"s5000",  ic:"🌟", name:"오천 점",    desc:"한 판 5,000점"}
 ];
-const MODES = {easy:{t:30,guide:"쉬움: 초등학생도 아는 흔한 단어를 골라. 신조어는 쓰지 마."},
-               normal:{t:20,guide:"보통: 흔한 단어 위주로, 가끔 최신 신조어나 조금 어려운 단어를 섞어."},
-               hell:{t:15,guide:"지옥: 반드시 한방단어를 노려라. 즉 끝 글자로 시작하는 명사가 거의 없어서 상대가 잇기 어려운 단어(예: ~늄, ~릇, ~슭, ~녘, ~쁨, ~듐, ~튬, ~즘 으로 끝나는 말)를 최우선으로 고르고, 그런 단어가 없을 때만 끝 글자가 까다로운 희귀어·최신어를 써."}};
+const MODES = {easy:{t:30,lives:5,hints:3,forgive:true,guide:"쉬움: 초등학생도 아는 흔한 단어를 골라. 신조어는 쓰지 마."},
+               normal:{t:20,lives:3,hints:2,guide:"보통: 흔한 단어 위주로, 가끔 최신 신조어나 조금 어려운 단어를 섞어."},
+               hell:{t:15,lives:3,hints:1,guide:"지옥: 반드시 한방단어를 노려라. 즉 끝 글자로 시작하는 명사가 거의 없어서 상대가 잇기 어려운 단어(예: ~늄, ~릇, ~슭, ~녘, ~쁨, ~듐, ~튬, ~즘 으로 끝나는 말)를 최우선으로 고르고, 그런 단어가 없을 때만 끝 글자가 까다로운 희귀어·최신어를 써."}};
 
 /* ================= storage ================= */
 const KEY="kkeutmal-hunter-v1";
-let P={best:0,xp:0,badges:[],rare:0,trend:0,dex:0,nick:"",emo:"🦊"};
+let P={best:0,xp:0,badges:[],rare:0,trend:0,dex:0,dexWords:[],nick:"",emo:"🦊",mission:null,tutDone:false};
 try{const s=localStorage.getItem(KEY); if(s) P=Object.assign(P,JSON.parse(s));}catch(e){}
 function saveP(){try{localStorage.setItem(KEY,JSON.stringify(P));}catch(e){}}
 const levelOf = xp => Math.floor(Math.sqrt(xp/400))+1;
@@ -476,6 +535,7 @@ let online=null, roomNs=undefined;
 
 /* ================= start screen ================= */
 function renderProfile(){
+  renderMissions(); $("dexN").textContent=P.dexWords.length;
   const lv=levelOf(P.xp), a=xpFor(lv), b=xpFor(lv+1);
   if(lv>=5) earn("lv5");
   $("pLv").textContent="Lv."+lv; $("pRank").textContent=RANKS[Math.min(RANKS.length-1,Math.floor((lv-1)/2))];
@@ -508,24 +568,38 @@ let S={}, timerId=null, meanings={};
 $("btnStart").onclick=startGame; $("btnAgain").onclick=()=>{$("over").classList.remove("show");startGame();};
 $("btnHome").onclick=()=>{$("over").classList.remove("show");show("start");renderProfile();};
 $("btnQuit").onclick=()=>gameOver();
+$("btnPass").onclick=()=>{
+  if(S.busy||!S.alive) return;
+  stopTimer();
+  const easy=MODES[mode].forgive;
+  loseLife(easy?"⏭️ 패스! (쉬움 모드라 콤보만 사라져요)":"⏭️ 패스 — 목숨 -1",easy);
+  if(S.alive) setTimeout(()=>{ if(S.alive){ newRound("🎲 새 단어로 다시 시작!"); $("word").focus(); } },700);
+};
 
 function startGame(){
   bgmStart();
-  S={lives:3,score:0,combo:0,maxCombo:0,used:new Set(),last:"",tMax:MODES[mode].t,tLeft:0,busy:false,hints:1,words:0,wins:0,newBadges:[],alive:true};
+  const M=MODES[mode];
+  S={lives:M.lives,maxLives:M.lives,score:0,combo:0,maxCombo:0,used:new Set(),last:"",tMax:M.t,tLeft:0,busy:false,hints:M.hints,words:0,wins:0,newBadges:[],alive:true,learned:[],fever:false};
+  setFever(false);
   meanings={}; $("chain").innerHTML=""; $("word").value="";
   $("cardBody").innerHTML=`<p class="empty">어렵거나 새로 생긴 단어가 나오면 여기에 뜻이 떠요 ✨ 위의 단어를 누르면 뜻을 다시 볼 수 있어요.</p>`;
   $("offline").style.display = online===false ? "block":"none";
   show("game"); renderHud(); newRound("🤖 AI가 먼저 시작해요"); $("word").focus();
 }
 function renderHud(){
-  $("lives").innerHTML=[0,1,2].map(i=>`<span class="${i<S.lives?"":"dead"}">${i<S.lives?"❤️":"🖤"}</span>`).join("");
+  if(!S.maxLives) return;
+  $("lives").innerHTML=Array.from({length:S.maxLives},(_,i)=>i).map(i=>`<span class="${i<S.lives?"":"dead"}">${i<S.lives?"❤️":"🖤"}</span>`).join("");
   $("score").textContent=S.score.toLocaleString();
   const c=$("combo"); c.textContent= S.combo>1? `🔥 x${mult().toFixed(2).replace(/0$/,"")} (${S.combo})` : `🔥 ${S.combo}`;
   c.classList.toggle("hot",S.combo>=3);
-  $("hintN").textContent=S.hints; $("btnHint").disabled=S.hints<1||S.busy;
-  $("dex").textContent="📚 도감 "+P.dex;
+  $("hintN").textContent=S.hints; $("btnHint").disabled=S.hints<1||S.busy; $("btnPass").disabled=S.busy;
+  $("dex").textContent="📚 도감 "+P.dexWords.length;
 }
-const mult=()=>Math.min(3,1+0.25*S.combo);
+const mult=()=>Math.min(3,1+0.25*S.combo)*(S.fever?1.5:1);
+function setFever(on){
+  const was=!!S.fever; S.fever=on; document.body.classList.toggle("fever",on);
+  if(on&&!was){ floatText("🔥 FEVER TIME!","var(--pink)"); sfx("win"); missionAdd("fever",1); }
+}
 function newRound(msg){
   const w=rand(STARTERS.filter(w=>!S.used.has(w)))||"사과";
   addWord(w,"ai",{}); setLast(w); setStatus(`${msg} — <b>${w}</b>`); startTimer();
@@ -536,7 +610,7 @@ function addWord(w,who,info){
   const b=document.createElement("button"); b.className="chip new "+(who==="me"?"me":"");
   b.textContent=(who==="me"?P.emo:"🤖")+" "+w; b.onclick=()=>showCard(w,true);
   $("chain").appendChild(b); $("chain").scrollTo({left:99999,behavior:"smooth"});
-  if((info.r||info.t) && info.m){ P.dex++; showCard(w); }
+  if((info.r||info.t) && info.m){ addToDex(w,info); S.learned.push({w,m:info.m}); showCard(w); }
 }
 function showCard(w,manual){
   const m=meanings[w]||{};
@@ -555,8 +629,8 @@ function startTimer(keep){
 }
 function stopTimer(){clearInterval(timerId);timerId=null;setIntense(false);}
 function timeout(){ if(!S.alive) return; loseLife("⏰ 시간 초과!"); if(S.alive){ stamp("TIME OUT","⏰ 시간 초과 — 목숨 -1"); setTimeout(()=>{ if(S.alive) newRound("🎲 AI가 새 단어를 냈어요"); },2000); } }
-function loseLife(msg){
-  S.lives--; S.combo=0; renderHud(); setStatus(msg,true); shake($("game")); floatText("💔","var(--bad)"); sfx("bad");
+function loseLife(msg,noLife){
+  if(!noLife) S.lives--; S.combo=0; setFever(false); renderHud(); setStatus(msg,true); shake($("game")); floatText("💔","var(--bad)"); sfx("bad");
   if(S.lives<=0){S.alive=false; setTimeout(gameOver,700);}
 }
 function setBusy(b){S.busy=b; $("btnFire").disabled=b; $("word").readOnly=b; renderHud();}
@@ -571,7 +645,7 @@ async function submit(){
   if(!isHangulWord(w)) return nudge("✋ 한글 두 글자 이상으로 입력하세요",$("entry"),setStatus);
   if(!allowed.includes(w[0])) return nudge(`✋ ‘${allowed.join("’ 또는 ‘")}’(으)로 시작해야 해요`,$("entry"),setStatus);
   if(S.used.has(w)) return nudge("🔁 이미 나온 단어예요",$("entry"),setStatus);
-  stopTimer(); setBusy(true); setStatus(`🔍 <span class="dots">AI 심판이 사전을 뒤지는 중</span>`);
+  stopTimer(); setBusy(true); setStatus(`<span class="think">🤖</span> <span class="dots">AI가 국어사전을 뒤지는 중</span>`);
   let res;
   try{ res = online ? await judgeAI(w) : judgeOffline(w); }
   catch(e){
@@ -579,10 +653,17 @@ async function submit(){
     else{ setBusy(false); setStatus(e&&e.code==="rate_limited"?"🐢 요청이 많아요. 잠깐 뒤 다시 공격하세요.":"📡 심판 연결이 끊겼어요. 다시 공격하세요.",true); startTimer(true); return; }
   }
   setBusy(false); if(!S.alive) return;
-  if(!res||!res.valid){ loseLife(`❌ ‘${esc(w)}’ 탈락 — ${esc(res&&res.reason||"사전에 없는 단어")}`); if(S.alive) startTimer(true); return; }
+  if(!res||!res.valid){
+    const why=esc(res&&res.reason||"사전에 없는 단어");
+    if(MODES[mode].forgive){ loseLife(`🙅 ‘${esc(w)}’는 안 돼요 — ${why}<br><small>쉬움 모드라 목숨은 그대로! 다른 단어를 떠올려 봐요</small>`,true); }
+    else loseLife(`❌ ‘${esc(w)}’ 탈락 — ${why}`);
+    if(S.alive) startTimer(true); return;
+  }
   const base=w.length*10, bonus=(res.rare?50:0)+(res.trend?50:0), speed=Math.ceil(S.tLeft)*3;
   const pts=Math.round((base+bonus+speed)*mult());
   S.score+=pts; S.combo++; S.words++; S.maxCombo=Math.max(S.maxCombo,S.combo);
+  if(S.combo>=5) setFever(true);
+  missionAdd("words",1); missionMax("combo",S.maxCombo); if(res.rare) missionAdd("rare",1); if(res.trend) missionAdd("trend",1); if(w.length>=4) missionAdd("long4",1);
   if(res.rare) P.rare++; if(res.trend) P.trend++;
   if(S.combo%5===0){ S.hints++; setTimeout(()=>floatText("💡 힌트 +1","var(--lime)"),500); }
   addWord(w,"me",{m:res.meaning,r:res.rare,t:res.trend});
@@ -594,7 +675,7 @@ async function submit(){
   const ai=res.ai, aiAllowed=startsFor(w.slice(-1));
   const aiOk = ai && typeof ai.word==="string" && isHangulWord(ai.word) && aiAllowed.includes(ai.word[0]) && !S.used.has(ai.word);
   if(!aiOk){
-    S.score+=300; S.wins++; earn("first",S.newBadges); if(mode==="hell") earn("hell",S.newBadges); renderHud();
+    S.score+=300; S.wins++; missionAdd("wins",1); earn("first",S.newBadges); if(mode==="hell") earn("hell",S.newBadges); renderHud();
     floatText("🏳️ AI 항복! +300","var(--lime)"); sfx("win");
     setStatus(`🎉 AI가 ‘${aiAllowed.join("/")}’(으)로 시작하는 단어를 못 찾았어요!`);
     $("word").readOnly=true; $("btnFire").disabled=true;
@@ -624,7 +705,7 @@ $("btnHint").onclick=async()=>{
   startTimer(true); $("word").focus();
 };
 function gameOver(){
-  stopTimer(); S.alive=false; sfx("fail");
+  stopTimer(); S.alive=false; sfx("fail"); setFever(false);
   const isBest=S.score>P.best; if(isBest) P.best=S.score;
   const beforeLv=levelOf(P.xp); P.xp+=S.score; const afterLv=levelOf(P.xp); saveP();
   $("overTitle").textContent = S.wins>0 ? "🎉 게임 종료" : "💥 게임 오버";
@@ -632,6 +713,8 @@ function gameOver(){
   $("oBest").textContent= isBest&&S.score>0 ? "🏆 최고 기록 갱신!" : (afterLv>beforeLv?`⬆️ 레벨 업! Lv.${afterLv}`:"");
   $("oWords").textContent=S.words; $("oCombo").textContent=S.maxCombo; $("oWins").textContent=S.wins;
   $("oEarned").innerHTML=S.newBadges.length? "🏅 새 배지: "+S.newBadges.map(id=>{const b=BADGES.find(x=>x.id===id);return b.ic+" "+b.name}).join(", ") : "";
+  const L=$("oLearned");
+  if(S.learned.length){ L.hidden=false; L.innerHTML="📖 <b>이번 판에 만난 단어</b><br>"+S.learned.map(x=>`<b>${esc(x.w)}</b> — ${esc(x.m)}`).join("<br>"); } else L.hidden=true;
   $("over").classList.add("show"); $("btnAgain").focus();
 }
 
@@ -645,6 +728,7 @@ const ON={room:null,code:"",host:false,me:null,unsub:[],st:null,sawHost:false,su
 function myProfile(){
   const n=($("nick").value||"").trim().slice(0,8);
   if(!n){ const note=$("onNote"); note.textContent="✏️ 닉네임을 먼저 입력해 주세요"; note.classList.remove("hide"); shake($("nick")); $("nick").focus(); return null; }
+  if(isBad(n)){ const note=$("onNote"); note.textContent="🙅 친구들이 보기 좋은 고운 닉네임을 써 주세요"; note.classList.remove("hide"); shake($("nick")); $("nick").focus(); return null; }
   P.nick=n; saveP(); return {nick:n,emo:P.emo};
 }
 $("btnCreate").onclick=()=>{ const me=myProfile(); if(!me) return;
@@ -695,6 +779,7 @@ function renderLobbyControls(){ $("hostCtl").style.display=ON.host?"block":"none
 function onRoomPeers(ch){
   const peers=ch.peers;
   const mine=peers.find(p=>p.sameTab); if(mine) ON.me=mine.peer;
+  handleReactions(peers);
   if(ON.host){ hostHandlePeers(peers,ch); renderLobbyList(peers,ON.H); return; }
   const hp=peers.find(p=>p.presence&&p.presence.host&&!p.sameTab);
   if(!hp){ if(ON.sawHost) leaveRoom("👋 방장이 방을 나가서 게임이 끝났어요"); else renderLobbyList(peers,null); return; }
@@ -749,6 +834,7 @@ function renderMulti(st){
   else { s.innerHTML=myTurn?"⚡ 내 차례예요!":`👉 ${nameOf(st,st.turn)} 차례`; s.className="status"+(myTurn?" mine":""); }
 }
 function showMCard(c,st,manual){
+  if(!manual && c.m && (c.r||c.t)) addToDex(c.w,c);
   const who=c.p==="sys"?"🎲 시작 단어":((st.pl[c.p]||{}).e||"")+" "+((st.pl[c.p]||{}).n||"");
   $("mcardBody").innerHTML=cardHTML(c.w,c,who,true);
   const el=$("mcard"); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
@@ -805,7 +891,7 @@ function hostHandlePeers(peers,ch){
   if(H.ph==="lobby"){
     const ids=named.map(p=>p.peer);
     H.ord=H.ord.filter(p=>ids.includes(p)); ids.forEach(p=>{ if(!H.ord.includes(p)) H.ord.push(p); });
-    const pl={}; named.forEach(p=>pl[p.peer]={n:String(p.presence.nick).slice(0,8),e:String(p.presence.emo||"🙂").slice(0,8),l:3,s:0,c:0});
+    const pl={}; named.forEach((p,i)=>pl[p.peer]={n:isBad(String(p.presence.nick))?"헌터"+(i+1):String(p.presence.nick).slice(0,8),e:String(p.presence.emo||"🙂").slice(0,8),l:3,s:0,c:0});
     const sig=JSON.stringify([H.ord,pl]);
     if(sig!==ON.lobbySig){ ON.lobbySig=sig; H.pl=pl; hostSync(); }
     return;
@@ -894,6 +980,111 @@ async function hostSubmit(p,w){
 async function judgeOnly(w){ return askAI("judge",{word:w,used:[...ON.used].slice(-60)}); }
 
 /* =====================================================================
+   v3 — 미션 · 도감 · 튜토리얼 · 응원 이모지 · 고운말 필터
+   ===================================================================== */
+const BAD=/(씨발|시발|ㅅㅂ|ㅆㅂ|씨바|시바|병신|ㅂㅅ|븅신|개새|개색|새끼|ㅅㄲ|좆|존나|졸라|ㅈㄴ|지랄|ㅈㄹ|미친|ㅁㅊ|닥쳐|꺼져|엿먹|섹스|섹시|야동|느금|니애미|애미|애비|등신|찐따|장애)/;
+const isBad=t=>BAD.test(String(t).replace(/[\s\d._!~*-]/g,""));
+
+function addToDex(w,info){
+  if(!info||!info.m) return;
+  if(P.dexWords.some(x=>x.w===w)) return;
+  P.dexWords.unshift({w,m:String(info.m).slice(0,60),r:!!info.r,t:!!info.t,d:new Date().toISOString().slice(0,10)});
+  if(P.dexWords.length>300) P.dexWords.length=300;
+  P.dex=P.dexWords.length; saveP();
+  setTimeout(()=>floatText("📚 도감 등록!","var(--cyan)"),900);
+}
+let dexFilter="all";
+function renderDex(){
+  const list=P.dexWords.filter(x=>dexFilter==="all"||x[dexFilter]);
+  $("dexCount").textContent=`📚 ${P.dexWords.length}개 수집`;
+  $("dexList").innerHTML=list.length?list.map(x=>`<div class="dx"><b>${esc(x.w)}</b>${x.r?'<span class="pill rare">💎 희귀어</span>':""}${x.t?'<span class="pill trend">📡 최신어</span>':""}<p>${esc(x.m)}</p></div>`).join("")
+    :`<p class="wait">아직 모은 단어가 없어요 🥚<br>게임에서 💎희귀어나 📡최신어를 만나면 여기에 쌓여요!</p>`;
+}
+$("btnDex").onclick=()=>{ renderDex(); show("dexScreen"); };
+$("btnDexBack").onclick=()=>{ show("start"); renderProfile(); };
+document.querySelectorAll("#dexFilter button").forEach(b=>b.onclick=()=>{ dexFilter=b.dataset.f; document.querySelectorAll("#dexFilter button").forEach(x=>x.setAttribute("aria-pressed",x===b)); renderDex(); });
+
+/* 오늘의 미션 */
+const MISSIONS=[
+  {id:"w10",   key:"words", goal:10, text:"🔗 단어 10개 잇기"},
+  {id:"w20",   key:"words", goal:20, text:"🔗 단어 20개 잇기"},
+  {id:"rare1", key:"rare",  goal:1,  text:"💎 희귀어 1개 쓰기"},
+  {id:"trend1",key:"trend", goal:1,  text:"📡 최신어 1개 쓰기"},
+  {id:"c5",    key:"combo", goal:5,  text:"🔥 한 판에 5콤보", max:true},
+  {id:"c8",    key:"combo", goal:8,  text:"☄️ 한 판에 8콤보", max:true},
+  {id:"win1",  key:"wins",  goal:1,  text:"🏳️ AI 항복시키기"},
+  {id:"long3", key:"long4", goal:3,  text:"📏 4글자 이상 단어 3개"},
+  {id:"fever", key:"fever", goal:1,  text:"🔥 FEVER 타임 만들기"}
+];
+function today(){ const d=new Date(); return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate(); }
+function ensureMissions(){
+  if(P.mission&&P.mission.date===today()) return;
+  let seed=[...today()].reduce((a,c)=>a*31+c.charCodeAt(0),7)>>>0;
+  const pool=[...MISSIONS], ids=[];
+  const keys=new Set();
+  while(ids.length<3&&pool.length){ seed=(seed*1103515245+12345)>>>0; const m=pool.splice(seed%pool.length,1)[0]; if(keys.has(m.key)) continue; keys.add(m.key); ids.push(m.id); }
+  P.mission={date:today(),ids,prog:{},done:[]}; saveP();
+}
+function missionAdd(key,n){ missionUpdate(key,v=>v+n); }
+function missionMax(key,v){ missionUpdate(key,old=>Math.max(old,v)); }
+function missionUpdate(key,fn){
+  ensureMissions(); const M=P.mission;
+  M.ids.forEach(id=>{ const m=MISSIONS.find(x=>x.id===id); if(!m||m.key!==key||M.done.includes(id)) return;
+    M.prog[id]=Math.min(m.goal,fn(M.prog[id]||0));
+    if(M.prog[id]>=m.goal){ M.done.push(id); P.xp+=200; setTimeout(()=>{ floatText("🎯 미션 완료! +200 XP","var(--lime)"); sfx("win"); },1200);
+      if(M.done.length===M.ids.length) setTimeout(()=>{ P.xp+=300; floatText("🏆 오늘 미션 올클리어! +300","var(--yellow)"); },2400); }
+  });
+  saveP();
+}
+function renderMissions(){
+  ensureMissions(); const M=P.mission;
+  $("missions").innerHTML=`<h4>🎯 오늘의 미션 <small>${M.done.length}/${M.ids.length} 완료 · 하나에 +200 XP</small></h4>`+M.ids.map(id=>{
+    const m=MISSIONS.find(x=>x.id===id); const v=M.prog[id]||0, done=M.done.includes(id);
+    return `<div class="ms ${done?"done":""}"><span>${done?"✅":"⬜"} ${m.text}</span><span class="pbar"><i style="width:${Math.round(v/m.goal*100)}%"></i></span><span class="cnt">${v}/${m.goal}</span></div>`;}).join("");
+}
+
+/* 첫 방문 튜토리얼 */
+const TUT=[
+  {e:"🔗",t:"끝말을 이어요",p:"화면 가운데 큰 글자로 시작하는 단어를 입력하고 ⚔️공격! 예를 들어 <b>사과</b> 다음엔 <b>과자</b>, <b>과일</b>처럼요. 두음법칙도 인정돼요 (력→역)."},
+  {e:"⏱️",t:"시간 안에!",p:"동그라미 타이머가 다 줄기 전에 내야 해요. 모르겠으면 💡힌트를 쓰거나 ⏭️패스할 수 있어요."},
+  {e:"🔥",t:"콤보와 FEVER",p:"연속으로 맞히면 점수가 불어나고, 5연속이면 <b>FEVER</b>! 💎어려운 단어·📡최신어는 보너스 점수에 📚도감에도 모여요."},
+  {e:"🏳️",t:"AI를 이겨라!",p:"AI가 이을 단어를 못 찾으면 <b>FAIL</b> 도장 쾅! +300점이에요. 친구랑 하고 싶으면 👥온라인 대결에서 방을 만들어요."}
+];
+function showTut(i=0){
+  const s=TUT[i], last=i===TUT.length-1;
+  $("tutBody").innerHTML=`<div class="stepn">${i+1} / ${TUT.length}</div><div class="big-e">${s.e}</div><h2 id="tutTitle">${s.t}</h2><p>${s.p}</p>
+   <div class="row2"><button class="ghost" id="tutSkip">${last?"닫기":"건너뛰기"}</button><button class="go" id="tutNext" style="flex:2">${last?"🎮 시작하기!":"다음 ▶"}</button></div>`;
+  $("tut").classList.add("show");
+  const close=()=>{ $("tut").classList.remove("show"); P.tutDone=true; saveP(); };
+  $("tutSkip").onclick=close; $("tutNext").onclick=()=>{ if(last) close(); else showTut(i+1); };
+  $("tutNext").focus();
+}
+$("btnTut").onclick=()=>showTut(0);
+
+/* 온라인 응원 이모지 */
+let rxN=0, rxLast=0; const rxSeen={};
+function flyReaction(e,name){
+  const f=document.createElement("div"); f.className="rxfly"; f.style.left=(10+Math.random()*75)+"%";
+  f.innerHTML=`${e}<small>${esc(name)}</small>`; document.body.appendChild(f); setTimeout(()=>f.remove(),1900);
+}
+document.querySelectorAll("#rxbar button").forEach(b=>b.onclick=()=>{
+  const now=Date.now(); if(now-rxLast<700||!ON.room) return; rxLast=now;
+  ON.room.presence({rx:{e:b.dataset.e,n:++rxN}}).catch(()=>{});
+  flyReaction(b.dataset.e,"나");
+});
+function handleReactions(peers){
+  peers.forEach(p=>{
+    if(p.sameTab) return;
+    const r=p.presence&&p.presence.rx; if(!r||typeof r.n!=="number") return;
+    if(rxSeen[p.peer]===undefined){ rxSeen[p.peer]=r.n; return; }
+    if(r.n===rxSeen[p.peer]) return;
+    rxSeen[p.peer]=r.n;
+    if(!/^(👏|😂|😱|🔥|👍|🤯)$/u.test(r.e)) return;
+    flyReaction(r.e, isBad(p.presence.nick||"")?"":String(p.presence.nick||"").slice(0,8));
+  });
+}
+
+/* =====================================================================
    SOUND  (Web Audio로 직접 합성 — 외부 파일 없음)
    ===================================================================== */
 const AU={ctx:null,master:null,bgm:null,sfx:null,noise:null,on:false,step:0,next:0,tid:null,intense:false,lastSec:-1};
@@ -972,7 +1163,9 @@ $("btnSfx").onclick=()=>{ P.sfxOn=!P.sfxOn; saveP(); syncSndButtons(); if(P.sfxO
 document.addEventListener("pointerdown",()=>{ if(P.bgmOn) bgmStart(); },{once:true});
 syncSndButtons();
 
+if(P.dex&&!P.dexWords.length) P.dex=0;
 renderProfile(); updateOnNote();
+if(!P.tutDone) setTimeout(()=>showTut(0),400);
 </script>
 </body>
 </html>
